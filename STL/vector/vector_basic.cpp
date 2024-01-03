@@ -4,8 +4,15 @@
 
 void test_constructor();  // Constructors are used to initialize the vector object with values that can be accessed by using iterators.
 void test_assign();       // assign() is used to assign new values to the vector elements by replacing old ones. It can also be used to empty the container.
+
 void test_at();           // at() is used to return the reference to the element present at the position given as the parameter to the function.
 void test_back();         // back() is used to return the reference to the last element of the vector container.
+void test_begin_and();    // begin() is used to return an iterator pointing to the first element of the vector.
+                          // end() is used to return an iterator pointing to the theoretical element that follows the last element in the vector.
+void test_cbegin_and();    // cbegin() returns a constant iterator pointing to the first element of the vector.
+                          // cend() returns a constant iterator pointing to the theoretical element that follows the last element in the vector.
+
+void test_capacity();     // capacity() is used to return the size of the storage space currently allocated to the vector expressed as number of elements.
 
 #define print_vector(v) \
     for (auto i : v) \
@@ -17,7 +24,10 @@ int main(void)
 //    test_constructor();
 //    test_assign();
 //    test_at();
-    test_back();
+//    test_back();
+//    test_begin_and();
+//    test_capacity();
+    test_cbegin_and();
 
 	return 0;
 }
@@ -126,4 +136,61 @@ void test_back(){
   
     // Last element is 10
     std::cout << myVector.back() << " ";
+}
+
+void test_begin_and(){
+//  Description:
+//    - begin() -- Returns an iterator pointing to the first element in the vector.
+//    - end() -- Returns an iterator pointing to the theoretical element that follows the last element in the vector.
+//  Complexity:
+//    - begin() -- Constant.
+//    - end() -- Constant.
+    
+    // Initialize int vector
+    std::vector<int> myVector = {1, 2, 3, 4, 5};
+    // Iterate over myVector using iterators
+	for (auto it = myVector.begin(); it != myVector.end(); it++) {
+	    std::cout << *it << " ";
+	}
+}
+
+void test_cbegin_and(){
+//  Description:
+//      - cbegin() -- Returns a constant iterator pointing to the first element in the vector.
+//      - cend() -- Returns a constant iterator pointing to the theoretical element that follows the last element in the vector.
+//  Complexity:
+//      - cbegin() -- Constant.
+//      - cend() -- Constant.
+
+//* Iterator cannot modify the contents of the vector if you use cbegin() and cend()
+
+    //declares an empty vector
+    std::vector<int> vec;
+    
+    //inserting elements in vector
+    vec.push_back(101);
+    vec.push_back(12);
+    vec.push_back(999);
+    vec.push_back(143);
+  
+    //Displaying elements of  vector from the end
+    std::cout << "Content of the vector \n";
+    for (auto it = vec.cend() - 1;  it >= vec.begin(); --it){ 
+        std::cout << *it << '\n'; 
+    }
+}
+
+void test_capacity(){
+//  Description:
+//  - Returns the number of elements that the vector could contain without allocating more storage.
+//  Complexity:
+//      - Constant.
+
+   //Declare the vector
+   std::vector<int> myvector{1,2,3,4,5};
+
+   //when capacity is exhausted, vector automatically expands
+   std::cout<<"The maximum capacity of the vector is: "<< myvector.capacity();
+
+// Alternative demo see https://zh.cppreference.com/w/cpp/container/vector/capacity
 }

@@ -11,23 +11,39 @@ void test_begin_and();    // begin() is used to return an iterator pointing to t
                           // end() is used to return an iterator pointing to the theoretical element that follows the last element in the vector.
 void test_cbegin_and();    // cbegin() returns a constant iterator pointing to the first element of the vector.
                           // cend() returns a constant iterator pointing to the theoretical element that follows the last element in the vector.
+void test_crbegin_and();  // crbegin() returns a constant reverse iterator pointing to the last element in the vector (reverse beginning). It moves from last to first element.
+                          // crend() returns a constant reverse iterator pointing to the theoretical element preceding the first element in the vector (considered as reverse end).
 
 void test_capacity();     // capacity() is used to return the size of the storage space currently allocated to the vector expressed as number of elements.
+void test_empty();        // empty() is used to check if the vector container is empty or not.
+
+void test_clear();        // clear() is used to remove all the elements of the vector container, thus making it size 0.
+void test_emplace();      // emplace() is used to insert a new element into the vector container, the new element is added to the end of the vector.
+void test_emplace_back(); // emplace_back() is used to insert a new element into the vector container, the new element is added to the end of the vector.
+void test_erase();        // erase() is used to remove elements from a container from the specified position or range.
 
 #define print_vector(v) \
     for (auto i : v) \
         std::cout << i << " "; \
         std::cout << std::endl;
 
-int main(void)
-{
+int main(){
 //    test_constructor();
 //    test_assign();
+
 //    test_at();
 //    test_back();
 //    test_begin_and();
+//    test_cbegin_and();
+//    test_crbegin_and();
+
 //    test_capacity();
-    test_cbegin_and();
+//    test_empty();
+
+//    test_clear();
+//    test_emplace();
+//    test_emplace_back();
+    test_erase();
 
 	return 0;
 }
@@ -180,6 +196,22 @@ void test_cbegin_and(){
     }
 }
 
+void test_crbegin_and(){
+// Description:
+// - crbegin() -- Returns a constant reverse iterator pointing to the last element in the vector (reverse beginning). It moves from last to first element.
+// - crend() -- Returns a constant reverse iterator pointing to the theoretical element preceding the first element in the vector (considered as reverse end).
+// Complexity:
+// - crbegin() -- Constant.
+// - crend() -- Constant.
+
+    std::vector<int> myvector = {1,2,3,4,5};
+
+    std::cout << "myvector backwards:";
+    for (auto rit = myvector.crbegin(); rit != myvector.crend(); ++rit)
+        std::cout << ' ' << *rit;
+    std::cout << '\n';
+}
+
 void test_capacity(){
 //  Description:
 //  - Returns the number of elements that the vector could contain without allocating more storage.
@@ -193,4 +225,123 @@ void test_capacity(){
    std::cout<<"The maximum capacity of the vector is: "<< myvector.capacity();
 
 // Alternative demo see https://zh.cppreference.com/w/cpp/container/vector/capacity
+}
+
+void test_empty(){
+// Description:
+// - Returns whether the vector is empty (i.e. whether its size is 0).
+// Complexity:
+// - Constant.
+
+    std::vector<int> myvector;
+    int sum (0);
+
+    for (int i=1;i<=10;i++) myvector.push_back(i);
+
+    while (!myvector.empty())
+    {
+       sum += myvector.back();
+       myvector.pop_back();
+    }
+
+    std::cout << "total: " << sum << '\n';
+}
+
+void test_clear(){
+//  Description:
+//    - Removes all elements from the vector (which are destroyed), leaving the container with a size of 0
+//  Complexity:
+//    - Linear in the size of the container, i.e., the number of elements.
+
+    std::vector<int> myVector;
+    
+    // Initialize vector with the values {1,2,3,4,5}
+    myVector = {1,2,3,4,5};
+    
+    // Output: "1 2 3 4 5"
+    for (int i : myVector) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+    
+    // Size of vector is 5
+    std::cout << "Vector size: " << myVector.size() << std::endl;
+    
+    // Clear the vector of all values, myVector now contains no values
+    myVector.clear(); 
+    
+    // Output is blank
+    for (int i : myVector) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    // Size of vector is 0
+    std::cout << "Vector size: " << myVector.size() << std::endl;
+
+//  Alternative demo see https://zh.cppreference.com/w/cpp/container/vector/clear
+}
+
+void test_emplace(){
+//  Description:
+//  - Places an element in the vector at the specified position
+// Complexity:
+//  - Constant.
+
+    //creating a vector of 5 elements
+    std::vector<int> vector1{10, 20, 30, 40, 50};
+
+    //function to add an element at the beginning and the end
+    vector1.emplace(vector1.begin(), -10);
+    print_vector(vector1);
+
+    vector1.emplace(vector1.end(), 60);
+    print_vector(vector1);
+
+    vector1.emplace(vector1.begin() + 2, 15);
+    print_vector(vector1);
+}
+
+void test_emplace_back(){
+// Description:
+// - Inserts a new element at the end of the vector, right after its current last element. This new element is constructed in place using args as the arguments for its construction.
+// Complexity:
+// - Constant.
+// Alternative demo see https://zh.cppreference.com/w/cpp/container/vector/emplace_back
+
+    std::vector<std::string> myvector = {"Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+
+    myvector.emplace_back("Earth");
+    myvector.emplace_back("Venus");
+
+    std::cout << "myvector contains:";
+    for (std::string& x : myvector)
+        std::cout << ' ' << x;
+    std::cout << '\n';
+}
+
+void test_erase(){
+//  Description:
+//  - Removes from the vector either a single element (position) or a range of elements ([first,last)).
+//  Complexity:
+//  - Linear in the distance between first and last: Compares the number of elements affected (distance) to the total container size (linear).
+
+    std::vector<int> vector1;
+
+    vector1 = {1,2,3,4,5,6,7,8,9};
+
+    // Remove 1st Element
+    vector1.erase(vector1.begin());
+    print_vector(vector1);
+
+    // Remove range of elements
+    vector1.erase(vector1.begin()+2,vector1.begin()+5);
+    print_vector(vector1);
+
+    // Bonus Example
+    // Remove element with value 'valueToRemove' from vector 'vector1'
+    // Using 'algorithm' C++ STL library to remove a specific value
+//    int valueToRemove = 7;
+//    std::vector<int> vector2 = { 5,6,1,7,12,3,7,9,7,2};
+//    vector2.erase( std::remove(vector2.begin(),vector2.end(),valueToRemove),vector2.end());
 }

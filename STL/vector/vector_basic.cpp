@@ -4,9 +4,11 @@
 
 void test_constructor();  // Constructors are used to initialize the vector object with values that can be accessed by using iterators.
 void test_assign();       // assign() is used to assign new values to the vector elements by replacing old ones. It can also be used to empty the container.
+void test_get_allocator();//! get_allocator() is used to return the copy of the allocator object associated with the vector.
 
 void test_at();           // at() is used to return the reference to the element present at the position given as the parameter to the function.
 void test_back();         // back() is used to return the reference to the last element of the vector container.
+void test_front();        // front() is used to return the reference to the first element of the vector.
 void test_begin_and();    // begin() is used to return an iterator pointing to the first element of the vector.
                           // end() is used to return an iterator pointing to the theoretical element that follows the last element in the vector.
 void test_cbegin_and();    // cbegin() returns a constant iterator pointing to the first element of the vector.
@@ -21,6 +23,9 @@ void test_clear();        // clear() is used to remove all the elements of the v
 void test_emplace();      // emplace() is used to insert a new element into the vector container, the new element is added to the end of the vector.
 void test_emplace_back(); // emplace_back() is used to insert a new element into the vector container, the new element is added to the end of the vector.
 void test_erase();        // erase() is used to remove elements from a container from the specified position or range.
+void test_insert();       // insert() is used to insert new elements into the vector container, the new elements are added before the element at the specified position.
+
+
 
 #define print_vector(v) \
     for (auto i : v) \
@@ -33,6 +38,7 @@ int main(){
 
 //    test_at();
 //    test_back();
+//    test_front();
 //    test_begin_and();
 //    test_cbegin_and();
 //    test_crbegin_and();
@@ -43,7 +49,8 @@ int main(){
 //    test_clear();
 //    test_emplace();
 //    test_emplace_back();
-    test_erase();
+//    test_erase();
+    test_insert();
 
 	return 0;
 }
@@ -115,6 +122,31 @@ void test_assign(){
     // example is now: { 0, 0, 0 }
 }
 
+void test_get_allocator(){
+//  Description:
+//  - Returns a copy of the allocator object associated with the vector.
+//  Complexity:
+//  - Constant.
+    std::vector<int> myvector;
+    int * p;
+        
+    // allocate an array with space for 5 elements using vector's allocator:
+    p = myvector.get_allocator().allocate(5);
+        
+    // construct values in-place on the array:
+    for(int i = 0; i < 5; ++i){
+        myvector.get_allocator().construct(&p[i],i);
+    }
+        
+    print_vector(myvector);
+        
+    // destroy and deallocate:
+    for(int i = 0; i < 5; ++i){
+        myvector.get_allocator().destroy(&p[i]);
+    }
+    myvector.get_allocator().deallocate(p,5);
+}
+
 void test_at(){
 //   Description : 
 //   - Returns a reference to the element at position _n_ in the vector.
@@ -152,6 +184,27 @@ void test_back(){
   
     // Last element is 10
     std::cout << myVector.back() << " ";
+}
+
+void test_front(){
+//  Description:
+//  - Returns a reference to the first element in the vector.
+//  Complexity:
+//  - Constant.
+    // Creating a vector 
+    std::vector<int> example; 
+  
+    // Add elements to the List 
+    example.push_back(10); 
+    example.push_back(20); 
+    example.push_back(30); 
+    example.push_back(40); 
+  
+    // get the first element using front() 
+    int & ele = example.front(); 
+  
+    // Print the first element 
+    std::cout << ele; 
 }
 
 void test_begin_and(){
@@ -344,4 +397,23 @@ void test_erase(){
 //    int valueToRemove = 7;
 //    std::vector<int> vector2 = { 5,6,1,7,12,3,7,9,7,2};
 //    vector2.erase( std::remove(vector2.begin(),vector2.end(),valueToRemove),vector2.end());
+}
+
+void test_insert(){
+// Description:
+// - The vector is extended by inserting new elements before the element at the specified position, effectively increasing the container size by the number of elements inserted.
+// - This causes an automatic reallocation of the allocated storage space if -and only if- the new vector size surpasses the current vector capacity.
+// Complexity:
+// - Linear in the number of elements inserted plus the distance to the end of the vector.
+
+    // initialising the vector 
+	std::vector<int> vec = { 10, 20, 30, 40 }; 
+
+	// inserts 5 at front 
+	auto it = vec.insert(vec.begin(), 5);  
+
+	std::cout << "The vector elements are: "; 
+	for (auto it = vec.begin(); it != vec.end(); ++it) 
+		std::cout << *it << " "; 
+	std::cout << std::endl;
 }

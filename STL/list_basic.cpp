@@ -17,6 +17,7 @@ void test_crbegin_end();    // The list::crbegin() is a built-in function in C++
 
 void test_empty();          // The list::empty() is a built-in function in C++ STL which is used to check whether the list container is empty or not.
 void test_max_size();       // The list::max_size() is a built-in function in C++ STL which is used to find the maximum number of elements that can be stored in the list container.
+void test_size();           // The list::size() is a built-in function in C++ STL which is used to return the number of elements in the list container.
 
 void test_clear();          // The list::clear() is a built-in function in C++ STL which is used to remove all the elements of the list container, thus making it size 0.
 void test_emplace();        // The list::emplace() is a built-in function in C++ STL which is used to insert a new element into the list container, the new element is added before the element at the specified position.
@@ -27,9 +28,16 @@ void test_pop_back();       // The list::pop_back() is a built-in function in C+
 void test_pop_front();      // The list::pop_front() is a built-in function in C++ STL which is used to pop or remove elements from a list from the front.
 void test_push_back();      // The list::push_back() is a built-in function in C++ STL which is used to insert elements into a list from the back.
 void test_push_front();     // The list::push_front() is a built-in function in C++ STL which is used to insert elements into a list from the front.
+void test_resize();         // The list::resize() is a built-in function in C++ STL which is used to resize a list container.
 
 void test_merge();          // The list::merge() is a built-in function in C++ STL which is used to merge two sorted lists into one.
 void test_remove();         // The list::remove() is a built-in function in C++ STL which is used to remove all the elements from the list container, which are equal to given element.
+void test_reverse();        // The list::reverse() is a built-in function in C++ STL which is used to reverse a list container.
+void test_sort();           // The list::sort() is a built-in function in C++ STL which is used to sort a list container.
+void test_slice();          // The list::slice() is a built-in function in C++ STL which is used to slice a list container.
+void test_unique();         // The list::unique() is a built-in function in C++ STL which is used to remove all duplicate consecutive elements from the list.
+
+void test_swap();           // The list::swap() is a built-in function in C++ STL which is used to swap the contents of one list with another list of same type and size.
 
 #define print_list(l) for (auto i : l) std::cout << i << " "; std::cout << std::endl;
 
@@ -47,6 +55,7 @@ int main()
 
 //    test_empty();
 //    test_max_size();
+//    test_size();
 
 //    test_clear();
 //    test_emplace();
@@ -56,9 +65,16 @@ int main()
 //    test_pop_front();
 //    test_push_back();
 //    test_push_front();
+//    test_resize();
 
 //    test_merge();
-    test_remove();
+//    test_remove();
+//    test_reverse();
+//    test_sort();
+//    test_slice();
+    test_unique();
+
+//    test_swap();
 
     return 0;
 }
@@ -224,6 +240,16 @@ void test_clear(){
     // List becomes empty 
   
     print_list(mylist);
+}
+
+void test_size(){
+// Description
+// - The list::size() is a built-in function in C++ STL which is used to return the number of elements in the list container.
+// Complexity
+// - Constant.
+    std::list<int> mylist{ 1, 2, 3, 4, 5 }; 
+  
+    std::cout << mylist.size() << std::endl; 
 }
 
 void test_emplace(){
@@ -394,6 +420,45 @@ void test_push_front(){
     print_list(mylist);
 }
 
+void test_resize(){
+// Description
+// - The list::resize() is a built-in function in C++ STL which is used to resize a list container.
+// Complexity
+// - Linear in the size of the list.
+// Parameters
+// - The function accepts two parameters which are specified below:
+// - n: This parameter specifies the new size of the list.
+// - val: This parameter specifies the value to be assigned to the list.
+    // Creating a list 
+    std::list<int> demoList; 
+  
+    // Add elements to the List 
+    demoList.push_back(10); 
+    demoList.push_back(20); 
+    demoList.push_back(30); 
+    demoList.push_back(40); 
+    demoList.push_back(50); 
+  
+    // Printing elements of list before resizing 
+    std::cout << "List before resizing: " << std::endl; 
+    print_list(demoList);
+  
+    // Resizing list size to 8 
+    demoList.resize(8); 
+  
+    // Printing elements of list after resizing 
+    std::cout << "List after 1st resizing: " << std::endl; 
+    print_list(demoList);
+
+    // Resizing list size to 8 
+    demoList.resize(2); 
+  
+    // Printing elements of list after resizing 
+    std::cout << "List after 2nd resizing: " << std::endl; 
+    print_list(demoList);
+
+}
+
 void test_merge(){
 // Description
 // - The list::merge() is a built-in function in C++ STL which is used to merge two sorted lists into one.
@@ -414,7 +479,7 @@ void test_merge(){
     print_list(list2);
 }
 
-void tet_remove(){
+void test_remove(){
 // Description
 // - The list::remove() is a built-in function in C++ STL which is used to remove all the elements from the list container, which are equal to given element.
 // Complexity
@@ -446,4 +511,141 @@ void tet_remove(){
     for (auto value : demoList) {
         std::cout << value << " "; 
     }
+}
+
+void test_reverse(){
+// Description
+// - The list::reverse() is a built-in function in C++ STL which is used to reverse a list container.
+// Complexity
+// - Linear in the size of the list.
+    // Creating a list 
+    std::list<int> demoList; 
+  
+    // Add elements to the List 
+    demoList.push_back(10); 
+    demoList.push_back(20); 
+    demoList.push_back(30); 
+    demoList.push_back(40); 
+    demoList.push_back(50); 
+  
+    // List before reversing 
+    std::cout << "List before reversing: "; 
+    print_list(demoList);
+
+    // Reversing the List 
+    demoList.reverse(); 
+  
+    // List after reversing 
+    std::cout << "\nList after reversing: "; 
+    print_list(demoList);
+}
+
+void test_sort(){
+// Description
+// - The list::sort() is a built-in function in C++ STL which is used to sort a list container.
+// Complexity
+// - Linear in the size of the list.
+    // Creating a list 
+    std::list<int> demoList; 
+  
+    // Add elements to the List 
+    demoList.push_back(10); 
+    demoList.push_back(50); 
+    demoList.push_back(30); 
+    demoList.push_back(20); 
+    demoList.push_back(40); 
+  
+    // List before sorting 
+    std::cout << "List before sorting: "; 
+    print_list(demoList);
+
+    // Sorting the List 
+    demoList.sort(); 
+  
+    // List after sorting 
+    std::cout << "\nList after sorting: "; 
+    print_list(demoList);
+}
+
+void test_slice(){
+// Description
+// - The list::slice() is a built-in function in C++ STL which is used to slice a list container.
+// Complexity
+// - Linear in the size of the list.
+// Parameters
+// - The function accepts two parameters which are specified below:
+// - start_pos: This parameter specifies the starting position of the slice.
+// - end_pos: This parameter specifies the ending position of the slice.
+    // initializing lists 
+    std::list<int> l1 = { 1, 2, 3 }; 
+    std::list<int> l2 = { 4, 5 }; 
+    std::list<int> l3 = { 6, 7, 8 }; 
+  
+    // transfer all the elements of l2 
+    l1.splice(l1.begin(), l2); 
+  
+    // at the beginning of l1 
+    std::cout << "list l1 after splice operation" << " "; 
+    print_list(l1);
+  
+    // transfer all the elements of l1 
+    l3.splice(l3.begin(), l1); 
+  
+    // at the end of l3 
+    std::cout << "\nlist l3 after splice operation" << " "; 
+    print_list(l3);
+}
+
+void test_unique(){
+// Description
+// - The list::unique() is a built-in function in C++ STL which is used to remove all duplicate consecutive elements from the list.
+// Complexity
+// - Linear in the size of the list.
+// Parameters
+// - The function accepts one parameter which is specified below:
+// - val: This parameter specifies the value to be removed.
+    // Creating a list 
+    std::list<int> demoList; 
+  
+    // Add elements to the List 
+    demoList.push_back(10); 
+    demoList.push_back(20); 
+    demoList.push_back(20); 
+    demoList.push_back(30);
+    demoList.push_back(10);
+    demoList.push_back(40); 
+  
+    // List before removing elements 
+    std::cout << "List before removing elements: "; 
+    print_list(demoList);
+  
+    // delete all elements with value 20 
+    demoList.unique(); 
+
+    // List after removing elements 
+    std::cout << "\nList after removing elements: "; 
+    print_list(demoList);
+}
+
+
+void test_swap(){
+// Description
+// - The list::swap() is a built-in function in C++ STL which is used to swap the contents of one list with another list of same type and size.
+// Complexity
+// - Constant.
+      // list container declaration 
+    std::list<int> mylist1{ 1, 2, 3, 4 }; 
+    std::list<int> mylist2{ 3, 5, 7, 9 }; 
+  
+    // using swap() function to  
+    //swap elements of lists 
+    mylist1.swap(mylist2); 
+  
+    // printing the first list 
+    std::cout << "mylist1 = "; 
+    print_list(mylist1);
+  
+    // printing the second list 
+    std::cout << std::endl << "mylist2 = "; 
+    print_list(mylist2);
 }

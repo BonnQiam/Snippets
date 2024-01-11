@@ -9,11 +9,30 @@ void test_at();             // The deque::at() is a built-in function in C++ STL
 void test_front();          // The deque::front() is a built-in function in C++ STL which is used to reference the first element of the deque container.
 void test_back();           // The deque::back() is a built-in function in C++ STL which is used to reference the last element of the deque container.
 
+void test_begin_end();      // The deque::begin() is a built-in function in C++ STL which is used to return an iterator pointing to the first element of the deque container.
+                            // The deque::end() is a built-in function in C++ STL which is used to return an iterator pointing to the theoretical element that follows last element in the deque container.
+void test_rbegin_rend();    // The deque::rbegin() is a built-in function in C++ STL which is used to return a reverse iterator pointing to the last element of the deque container (i.e., its reverse beginning).
+                            // The deque::rend() is a built-in function in C++ STL which is used to return a reverse iterator pointing to the theoretical element preceding the first element in the deque container (which is considered its reverse end).
+void test_crbegin_crend();  // The deque::crbegin() is a built-in function in C++ STL which is used to return a constant reverse iterator pointing to the last element in the deque container (i.e., its reverse beginning).
+                            // The deque::crend() is a built-in function in C++ STL which is used to return a constant reverse iterator pointing to the theoretical element preceding the first element in the deque container (which is considered its reverse end).
+
 void test_empty();          // The deque::empty() is a built-in function in C++ STL which is used to check whether the deque container is empty or not.
 void test_size();           // The deque::size() is a built-in function in C++ STL which is used to return the number of elements in the deque container.
 void test_max_size();       // The deque::max_size() is a built-in function in C++ STL which is used to return the maximum number of elements that can be stored in the deque container.
 void test_shrink_to_fit();  // The deque::shrink_to_fit() is a built-in function in C++ STL which is used to reduce the capacity of the container to fit its size and destroys all elements beyond the capacity. //! Wait for analyze
 
+void test_clear();          // The deque::clear() is a built-in function in C++ STL which is used to remove all the elements from the deque container, thus leaving it with a size of 0.
+void test_insert();         // The deque::insert() is a built-in function in C++ STL which is used to insert new elements into the deque container.
+void test_emplace();        // The deque::emplace() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the end of the deque.
+void test_erase();          // The deque::erase() is a built-in function in C++ STL which is used to remove elements from a container from the specified position or range.
+void test_push_back();      // The deque::push_back() is a built-in function in C++ STL which is used to push elements into a deque from the back.
+void test_emplace_back();   // The deque::emplace_back() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the end of the deque.
+void test_pop_back();       // The deque::pop_back() is a built-in function in C++ STL which is used to pop or remove elements from a deque from the back.
+void test_push_front();     // The deque::push_front() is a built-in function in C++ STL which is used to push elements into a deque from the front.
+void test_emplace_front();  // The deque::emplace_front() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the beginning of the deque.
+void test_pop_front();      // The deque::pop_front() is a built-in function in C++ STL which is used to pop or remove elements from a deque from the front.
+void test_resize();         // The deque::resize() is a built-in function in C++ STL which is used to resize a deque container so that it contains n elements.
+void test_swap();           // The deque::swap() is a built-in function in C++ STL which is used to swap the contents of one deque with another deque of same type and size.
 
 #define print_deque(deq) \
     for (auto i : deq)   \
@@ -26,11 +45,27 @@ int main(){
 //    test_at();
 //    test_front();
 //    test_back();
+//    test_begin_end();
+//    test_rbegin_rend();
+//    test_crbegin_crend();
 
 //    test_empty();
 //    test_size();
 //    test_max_size();
-    test_shrink_to_fit();
+//    test_shrink_to_fit();
+
+//    test_clear();
+//    test_insert();
+//    test_emplace();
+//    test_erase();
+//    test_push_back();
+//    test_emplace_back();
+//    test_pop_back();
+//    test_push_front();
+//    test_emplace_front();
+//    test_pop_front();
+//    test_resize();
+    test_swap();
 
     return 0;
 }
@@ -108,6 +143,49 @@ void test_back(){
     std::cout << "The last element is: " << data.back() << '\n';
 
     print_deque(data);
+}
+
+void test_begin_end(){
+// Description:
+// - The deque::begin() is a built-in function in C++ STL which is used to return an iterator pointing to the first element of the deque container.
+// - The deque::end() is a built-in function in C++ STL which is used to return an iterator pointing to the theoretical element that follows last element in the deque container.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    for (auto i = data.begin(); i != data.end(); ++i)
+        std::cout << *i << " ";
+}
+
+void test_rbegin_rend(){
+// Description:
+// - The deque::rbegin() is a built-in function in C++ STL which is used to return a reverse iterator pointing to the last element of the deque container (i.e., its reverse beginning).
+// - The deque::rend() is a built-in function in C++ STL which is used to return a reverse iterator pointing to the theoretical element preceding the first element in the deque container (which is considered its reverse end).
+// Complexity:
+// - Constant.
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    for (auto i = data.rbegin(); i != data.rend(); ++i)
+        std::cout << *i << " ";
+}
+
+void test_crbegin_crend(){
+// Description:
+// - The deque::crbegin() is a built-in function in C++ STL which is used to return a constant reverse iterator pointing to the last element in the deque container (i.e., its reverse beginning).
+// - The deque::crend() is a built-in function in C++ STL which is used to return a constant reverse iterator pointing to the theoretical element preceding the first element in the deque container (which is considered its reverse end).
+// Complexity:
+// - Constant.
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    for (auto i = data.crbegin(); i != data.crend(); ++i)
+        std::cout << *i << " ";
 }
 
 void test_empty(){
@@ -201,4 +279,242 @@ void test_shrink_to_fit(){
     deq.shrink_to_fit();
  
     std::cout << "\nDestroy deque as it goes out of scope:\n";
+}
+
+void test_clear(){
+// Description:
+// - The deque::clear() is a built-in function in C++ STL which is used to remove all the elements from the deque container, thus leaving it with a size of 0.
+// Complexity:
+// - Linear in the number of elements in the container, plus linear in the number of elements to be destroyed (if any).
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque size is: " << data.size() << '\n';
+    data.clear();
+    std::cout << "The deque size is: " << data.size() << '\n';
+}
+
+void test_insert(){
+// Description:
+// - The deque::insert() is a built-in function in C++ STL which is used to insert new elements into the deque container.
+// Complexity:
+// - Linear in the number of elements inserted plus the distance to the end of the deque.
+// Parameters:
+//  - pos: Position in the deque where the new elements are inserted.
+//  - val: Value to be copied (or moved) to the inserted elements.
+//  - n: Number of elements to insert. Each element is initialized to a copy of val.
+//  - first, last: Iterators specifying a range of elements. Copies of the elements in the range [first,last) are inserted at pos (in the same order).
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.insert(data.begin(), 88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.insert(data.begin(), 3, 88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    std::deque<int> data2 = {1, 2, 4, 5, 5, 6};
+    data.insert(data.begin(), data2.begin(), data2.end());
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_emplace(){
+// Description:
+// - The deque::emplace() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the end of the deque.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - args: Arguments to forward to the constructor of the element.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.emplace(data.begin(), 88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.emplace(data.end(), 88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_erase(){
+// Description:
+// - The deque::erase() is a built-in function in C++ STL which is used to remove elements from a container from the specified position or range.
+// Complexity:
+// - Linear in the number of elements erased plus the number of elements between pos and the end of the container.
+// Parameters:
+//  - pos: Iterator pointing to a single element to be removed from the deque.
+//  - first, last: Iterators specifying a range of elements to be removed from the deque. i.e., [first,last). 
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.erase(data.begin());
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.erase(data.begin(), data.begin() + 2);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_push_back(){
+// Description:
+// - The deque::push_back() is a built-in function in C++ STL which is used to push elements into a deque from the back.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - val: Value to be copied (or moved) to the new element.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.push_back(88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_emplace_back(){
+// Description:
+// - The deque::emplace_back() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the end of the deque.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - args: Arguments to forward to the constructor of the element.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.emplace_back(88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_pop_back(){
+// Description:
+// - The deque::pop_back() is a built-in function in C++ STL which is used to pop or remove elements from a deque from the back.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.pop_back();
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_push_front(){
+// Description:
+// - The deque::push_front() is a built-in function in C++ STL which is used to push elements into a deque from the front.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - val: Value to be copied (or moved) to the new element.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.push_front(88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_emplace_front(){
+// Description:
+// - The deque::emplace_front() is a built-in function in C++ STL which is used to insert a new element into the deque container, the new element is added to the beginning of the deque.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - args: Arguments to forward to the constructor of the element.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.emplace_front(88);
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_pop_front(){
+// Description:
+// - The deque::pop_front() is a built-in function in C++ STL which is used to pop or remove elements from a deque from the front.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - None.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.pop_front();
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_resize(){
+// Description:
+// - The deque::resize() is a built-in function in C++ STL which is used to resize a deque container so that it contains n elements.
+// Complexity:
+// - Linear in the number of elements inserted/erased (copy/move construction) plus linear in the number of elements between pos and the end of the container (if any).
+// Parameters:
+//  - n: New container size, expressed in number of elements.
+//  - val: Object whose content is copied to the added elements in case that n is greater than the current container size.
+    std::deque<int> data = {1, 2, 4, 5, 5, 6};
+ 
+    std::cout << "The deque size is: " << data.size() << '\n';
+    data.resize(10);
+    std::cout << "The deque size is: " << data.size() << '\n';
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.resize(5);
+    std::cout << "The deque size is: " << data.size() << '\n';
+    std::cout << "The deque is: ";
+    print_deque(data);
+
+    data.resize(10, 88);
+    std::cout << "The deque size is: " << data.size() << '\n';
+    std::cout << "The deque is: ";
+    print_deque(data);
+}
+
+void test_swap(){
+// Description:
+// - The deque::swap() is a built-in function in C++ STL which is used to swap the contents of one deque with another deque of same type and size.
+// Complexity:
+// - Constant.
+// Parameters:
+//  - c: Another deque container of the same type and size as this deque container, whose content is swapped with that of this deque.
+    std::deque<int> data1 = {1, 2, 4, 5, 5, 6};
+    std::deque<int> data2 = {11, 22, 44, 55, 55, 66};
+ 
+    std::cout << "The deque1 is: ";
+    print_deque(data1);
+    std::cout << "The deque2 is: ";
+    print_deque(data2);
+
+    data1.swap(data2);
+
+    std::cout << "The deque1 is: ";
+    print_deque(data1);
+    std::cout << "The deque2 is: ";
+    print_deque(data2);
 }

@@ -48,6 +48,10 @@ void test_first_second(){
     
     std::cout << p1.first << std::endl;
     std::cout << p1.second << std::endl;
+
+    p1.first = 3;
+    p1.second = 4.0;
+    Print_pair(p1);
 }
 
 void test_get(){

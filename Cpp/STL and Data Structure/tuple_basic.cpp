@@ -4,10 +4,20 @@
 
 void test_tuple_construct();// Construct a tuple
 
-#define Print_tuple(x) std::cout << x << std::endl;
+void test_get();            // Access by get
+
+#define Print_tuple(x) std::cout << "(" << std::get<0>(x) << ", " << std::get<1>(x) << ", " << std::get<2>(x) << ")" << std::endl;
+
+void test_swap();           // Swap two tuples
 
 int main()
 {
+//    test_tuple_construct();
+
+//    test_get();
+
+    test_swap();
+
     return 0;
 }
 
@@ -35,5 +45,31 @@ void test_tuple_construct()
     std::string c = "3";
     auto t9 = std::tie(a, b, c);
     // 10. Structured binding
-    auto [d, e, f] = t9;
+//    auto [d, e, f] = t9;
+}
+
+void test_get()
+{
+    std::tuple<int, float, std::string> t1(1, 2.0, "3");
+
+    std::cout << std::get<0>(t1) << std::endl;
+    std::cout << std::get<1>(t1) << std::endl;
+    std::cout << std::get<2>(t1) << std::endl;
+
+    std::get<0>(t1) = 4;
+    std::get<1>(t1) = 5.0;
+    std::get<2>(t1) = "6";
+
+    Print_tuple(t1);
+}
+
+void test_swap()
+{
+    std::tuple<int, float, std::string> t1(1, 2.0, "3");
+    std::tuple<int, float, std::string> t2(4, 5.0, "6");
+
+    std::swap(t1, t2);
+
+    Print_tuple(t1);
+    Print_tuple(t2);
 }

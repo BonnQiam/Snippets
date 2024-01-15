@@ -1,5 +1,8 @@
 #include <iostream>
 #include <list>
+#include <vector>
+
+void test_list_construct(); // Construct a list
 
 void test_assign();         // The list::assign() is a built-in function in C++ STL which is used to assign values to a list.
 
@@ -43,6 +46,8 @@ void test_swap();           // The list::swap() is a built-in function in C++ ST
 
 int main()
 {
+    test_list_construct();
+
 //    test_assign();
 
 //    test_back();
@@ -72,11 +77,40 @@ int main()
 //    test_reverse();
 //    test_sort();
 //    test_slice();
-    test_unique();
+//    test_unique();
 
 //    test_swap();
 
     return 0;
+}
+
+void test_list_construct(){
+// Description
+// - The list::list() is a built-in function in C++ STL which is used to create a list container.
+// Complexity
+// - Constant.
+// Parameters
+// - The function does not accept any parameters.
+    // Creating a list 
+    std::list<int> demoList; 
+  
+    // Add elements to the List 
+    demoList.push_back(10); 
+    demoList.push_back(20); 
+    demoList.push_back(30); 
+    demoList.push_back(40); 
+    demoList.push_back(50); 
+  
+    // Displaying the list 
+    for (int itr : demoList) { 
+        std::cout << itr << " "; 
+    } 
+
+    // Creating a list, using vector iterator
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::list<int> l(vec.begin(), vec.end());
+    print_list(l);
+
 }
 
 void test_assign(){

@@ -25,6 +25,16 @@ void test_emplace_hint();       // The set::emplace_hint() constructs element in
 void test_erase();              // The set::erase() removes elements from the set container
 void test_swap();               // The set::swap() swaps the contents of two sets
 
+void test_count();              // The set::count() returns the number of elements matching specific key
+void test_find();               // The set::find() returns an iterator to the element, if an element with specified key is found
+void test_equal_range();        // The set::equal_range() returns a range containing all elements with a given key in the container
+void test_lower_bound();        // The set::lower_bound() returns an iterator to the first element that is not less than the given key
+void test_upper_bound();        // The set::upper_bound() returns an iterator to the first element that is greater than the given key
+void test_key_comp();           // The set::key_comp() returns a copy of the comparison object used by the container
+                                //! Not understand
+void test_value_comp();         // The set::value_comp() returns a copy of the comparison object used by the container
+                                //! Not understand
+
 #define print_set(x) for (auto i : x) { std::cout << i << " "; } std::cout << std::endl;
 
 int main() {
@@ -43,6 +53,14 @@ int main() {
 
 //    test_clear();
 //    test_insert();
+
+//    test_count();
+//    test_find();
+//    test_equal_range();
+//    test_lower_bound();
+//    test_upper_bound();
+//    test_key_comp();
+    test_value_comp();
 
     return 0;
 }
@@ -286,4 +304,113 @@ void test_swap(){
     s1.swap(s2);
     std::cout << "s1.swap(s2): "; print_set(s1);
     std::cout << "s2.swap(s1): "; print_set(s2);
+}
+
+void test_count(){
+// Description
+// - The set::count() returns the number of elements matching specific key
+// Complexity
+// - Logarithmic in the size of the container
+
+    std::set<int> s = {1, 1, 2, 3, 4, 5};
+
+    print_set(s);
+
+    std::cout << "s.count(1): " << s.count(1) << std::endl;
+    std::cout << "s.count(6): " << s.count(6) << std::endl;
+}
+
+void test_find(){
+// Description
+// - The set::find() returns an iterator to the element, if an element with specified key is found
+// - This method is used to know if a value already exists in a set. If the value exists in the set, it returns an iterator to it, otherwise it returns an iterator to set::end.
+// Complexity
+// - Logarithmic in the size of the container
+
+    std::set<int> s = {1, 2, 3, 4, 5};
+
+    std::cout << "s.find(1): " << *s.find(1) << std::endl;
+    std::cout << "s.find(6): " << *s.find(6) << std::endl;
+}
+
+void test_equal_range(){
+// Description
+// - The set::equal_range() returns a range containing all elements with a given key in the container
+// Complexity
+// - Logarithmic in the size of the container
+
+    std::set<float> s = {1.1, 2.1, 3.5, 3.3, 3.4, 4.1, 5.1};
+
+    auto range = s.equal_range(3.5); // range is a pair of iterators, the first pointing to the first element that is not less than key and the second pointing to the first element greater than key
+    std::cout << "s.equal_range(3.5): " << *range.first << " " << *range.second << std::endl;
+
+    // Test equal range if key is not found
+    range = s.equal_range(3.2);
+    std::cout << "s.equal_range(3.2): " << *range.first << " " << *range.second << std::endl;
+
+    // Test equal range if key is greater than the largest element in the set
+    range = s.equal_range(6.0);
+    std::cout << "s.equal_range(6.0): " << *range.first << " " << *range.second << std::endl;
+}
+
+void test_lower_bound(){
+// Description
+// - The set::lower_bound() returns an iterator to the first element that is not less than the given key
+// Complexity
+// - Logarithmic in the size of the container
+
+    std::set<float> s = {1.1, 2.1, 3.5, 3.3, 3.4, 4.1, 5.1};
+
+    std::cout << "s.lower_bound(3.5): " << *s.lower_bound(3.6) << std::endl;
+    std::cout << "s.lower_bound(3.2): " << *s.lower_bound(3.2) << std::endl;
+    std::cout << "s.lower_bound(6.0): " << *s.lower_bound(6.0) << std::endl;
+}
+
+void test_upper_bound(){
+// Description
+// - The set::upper_bound() returns an iterator to the first element that is greater than the given key
+// Complexity
+// - Logarithmic in the size of the container
+
+    std::set<float> s = {1.1, 2.1, 3.5, 3.3, 3.4, 4.1, 5.1};
+
+    std::cout << "s.upper_bound(3.5): " << *s.upper_bound(3.1) << std::endl;
+    std::cout << "s.upper_bound(3.2): " << *s.upper_bound(3.2) << std::endl;
+    std::cout << "s.upper_bound(6.0): " << *s.upper_bound(6.0) << std::endl;
+}
+
+void test_key_comp(){
+// Description
+// - The set::key_comp() returns a copy of the comparison object used by the container
+// Complexity
+// - Constant
+// Parameters
+// - none
+
+    std::set<int> s = {1, 2, 3, 4, 5};
+
+    auto comp = s.key_comp();
+
+    // comp(a, b) returns true if a is less than b
+    std::cout << "s.key_comp()(1, 2): " << comp(1, 2) << std::endl;
+    std::cout << "s.key_comp()(2, 1): " << comp(2, 1) << std::endl;
+    std::cout << "s.key_comp()(1, 1): " << comp(1, 5) << std::endl;
+}
+
+void test_value_comp(){
+// Description
+// - The set::value_comp() returns a copy of the comparison object used by the container
+// Complexity
+// - Constant
+// Parameters
+// - none
+
+    std::set<int> s = {1, 2, 3, 4, 5};
+
+    auto comp = s.value_comp();
+
+    // comp(a, b) returns true if a is less than b
+    std::cout << "s.value_comp()(1, 2): " << comp(1, 2) << std::endl;
+    std::cout << "s.value_comp()(2, 1): " << comp(2, 1) << std::endl;
+    std::cout << "s.value_comp()(1, 1): " << comp(1, 5) << std::endl;
 }

@@ -33,3 +33,11 @@ git reset --hard HEAD~1
 这将撤消最新的提交，但也会撤消任何未提交的更改。
 
 ![](http://127.0.0.1:80/uploads/Snipaste_2023-03-16_16-25-26.png)
+
+PS. `HEAD^` 的意思是上一个版本，也可以写成 `HEAD~1`。如果你进行了 2 次 commit，想都撤回，可以使用 `HEAD~2`
+
+### 参数介绍
+
+- `--mixed` ：不删除工作空间改动代码，撤销 commit，并且撤销 `git add .` 操作这个为默认参数，`git reset --mixed HEAD^` 和 `git reset HEAD^` 效果是一样的。
+- `--soft` :  不删除工作空间改动代码，撤销 commit，不撤销 `git add .` 
+- `--hard` : 删除工作空间改动代码，撤销 commit，撤销 `git add .`。 注意完成这个操作后，就恢复到了上一次的 commit 状态。

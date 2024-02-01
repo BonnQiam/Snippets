@@ -3,6 +3,17 @@
 #include <string>
 #include <algorithm>
 
+/*
+! Q1: What's the difference between insert() and emplace() ?
+! A1: insert() is used to insert new elements into the vector container, the new elements are added before the element at the specified position.
+!     emplace() is used to insert a new element into the vector container, the new element is added to the end of the vector.
+
+! Q1: What's the difference between push_back(), emplace_back() ?
+! A1: push_back() is used to push or add elements at the back of a vector.
+!     emplace_back() is used to insert a new element into the vector container, the new element is added to the end of the vector.
+
+*/
+
 void test_constructor();  // Constructors are used to initialize the vector object with values that can be accessed by using iterators.
 void test_assign();       // assign() is used to assign new values to the vector elements by replacing old ones. It can also be used to empty the container.
 void test_get_allocator();//! get_allocator() is used to return the copy of the allocator object associated with the vector.

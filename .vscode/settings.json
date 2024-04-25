@@ -87,6 +87,7 @@
         "set": "cpp",
         "xtree": "cpp",
         "stack": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "*.md": "cpp"
     }
 }

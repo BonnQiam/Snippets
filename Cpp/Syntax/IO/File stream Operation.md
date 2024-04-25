@@ -78,7 +78,7 @@ fstream 对象名("文件名","打开方式");
 
 > 构造函数打开文件的方式，可看作是将定义流对象和打开文件可合二为一：
 
-![](http://127.0.0.1:80/uploads/Snipaste_2022-08-21_18-13-26.png)
+![](https://picbed-1306742914.cos.ap-nanjing.myqcloud.com/pics/Snipaste_2022-08-21_18-13-26.png)
 
 ## （3） 对文件进行读写操作
 
@@ -90,7 +90,7 @@ outfile << y;
 
 > 在对文件进行读写时，将文件看成字符流
 
-![](http://127.0.0.1:80/uploads/Snipaste_2022-08-21_18-14-42.png)
+![](https://picbed-1306742914.cos.ap-nanjing.myqcloud.com/pics/Snipaste_2022-08-21_18-14-42.png)
 
 ## （4）关闭文件
 
@@ -117,7 +117,7 @@ iofile.close(); //切断与输入输出文件 myfile3.txt 的联系
 
 涉及到字符串的文件读写：
 
-![](http://127.0.0.1:80/uploads/Snipaste_2022-08-21_18-17-06.png)
+![](https://picbed-1306742914.cos.ap-nanjing.myqcloud.com/pics/Snipaste_2022-08-21_18-17-06.png)
 
 简单例子：
 - 12-3-1.cpp ：写文本文件： 建立一个包含学生学号、姓名、成绩的文 本文件。一行放一个学生纪录
@@ -201,7 +201,7 @@ outfile.write((char *)a, 10*sizeof(int));//向文件输出一个整型数组a
 
 文件打开后，系统自动生成两个隐含的流指针—读指针和写指针
 
-![](http://127.0.0.1:80/uploads/Snipaste_2022-08-21_19-19-26.png)
+![](https://picbed-1306742914.cos.ap-nanjing.myqcloud.com/pics/Snipaste_2022-08-21_19-19-26.png)
 
 istream、ostream的成员函数可以返回指针的值或移动指针：
 - 用追加方式`(ate，app)`打开文件时，流指针指向文件末尾；

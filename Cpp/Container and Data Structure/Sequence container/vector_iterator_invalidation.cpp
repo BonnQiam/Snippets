@@ -1,4 +1,5 @@
-// example of iterator invalidation in g++ compiler
+// example of iterator of vector invalidation in g++ compiler
+// similar situation for deque
 
 #include<iostream>
 #include<vector>

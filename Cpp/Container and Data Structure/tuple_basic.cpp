@@ -3,6 +3,7 @@
 #include <iostream>
 
 void test_tuple_construct();// Construct a tuple
+void test_make_tuple();     // Make a tuple
 
 void test_get();            // Access by get
 
@@ -13,10 +14,11 @@ void test_swap();           // Swap two tuples
 int main()
 {
 //    test_tuple_construct();
+      test_make_tuple();
 
 //    test_get();
 
-    test_swap();
+//    test_swap();
 
     return 0;
 }
@@ -46,6 +48,13 @@ void test_tuple_construct()
     auto t9 = std::tie(a, b, c);
     // 10. Structured binding
 //    auto [d, e, f] = t9;
+}
+
+void test_make_tuple()
+{
+    auto t1 = std::make_tuple(1, 2.0, "3");
+
+    Print_tuple(t1);
 }
 
 void test_get()

@@ -7,6 +7,8 @@ void test_make_tuple();     // Make a tuple
 
 void test_get();            // Access by get
 
+void test_tuple_size();     // Get the size of a tuple
+
 #define Print_tuple(x) std::cout << "(" << std::get<0>(x) << ", " << std::get<1>(x) << ", " << std::get<2>(x) << ")" << std::endl;
 
 void test_swap();           // Swap two tuples
@@ -81,4 +83,11 @@ void test_swap()
 
     Print_tuple(t1);
     Print_tuple(t2);
+}
+
+void test_tuple_size()
+{
+    std::tuple<int, float, std::string> t1;
+
+    std::cout << std::tuple_size<decltype(t1)>::value << std::endl;
 }

@@ -78,7 +78,7 @@ public:
         x->next = tail;
         tail->prev = x;
         ++size;
-    }
+    }//complexity: O(1)
 
     // Add an element at the beginning of the list
     void addFirst(E e) {
@@ -89,7 +89,7 @@ public:
         head->next = x;
         x->prev = head;
         ++size;
-    }
+    }//complexity: O(1)
 
     // Add an element at the specified index
     void add(int index, E element) {
@@ -106,7 +106,7 @@ public:
         x->prev = temp;
         x->next = p;
         ++size;
-    }
+    }//complexity: O(n)
 
     // Remove the first element from the list
     E removeFirst() {
@@ -121,7 +121,7 @@ public:
         delete x;
         --size;
         return val;
-    }
+    }//complexity: O(1)
 
     // Remove the last element from the list
     E removeLast() {
@@ -136,7 +136,7 @@ public:
         delete x;
         --size;
         return val;
-    }
+    }//complexity: O(1)
 
     // Remove the element at the specified index
     E remove(int index) {
@@ -150,14 +150,14 @@ public:
         delete x;
         --size;
         return val;
-    }
+    }// complexity: O(n)
 
     // Get the element at the specified index
     E get(int index) {
         checkElementIndex(index);
         Node* p = getNode(index);
         return p->val;
-    }
+    }// complexity: O(n)
 
     // Get the first element
     E getFirst() {
@@ -165,7 +165,7 @@ public:
             throw std::out_of_range("No elements in the list");
         }
         return head->next->val;
-    }
+    }// complexity: O(1)
 
     // Get the last element
     E getLast() {
@@ -173,7 +173,7 @@ public:
             throw std::out_of_range("No elements in the list");
         }
         return tail->prev->val;
-    }
+    }// complexity: O(1)
 
     // Set the element at the specified index
     E set(int index, E val) {
@@ -182,7 +182,7 @@ public:
         E oldVal = p->val;
         p->val = val;
         return oldVal;
-    }
+    }// complexity: O(n)
 
     // Get the size of the list
     int size() const {

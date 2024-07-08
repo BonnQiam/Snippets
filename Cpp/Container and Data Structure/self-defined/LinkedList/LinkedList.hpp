@@ -62,14 +62,14 @@ public:
             tail = newNode;
         }
         size++;
-    }
+    }//complexity: O(1)
 
     void addLast(const E& e) {
         Node* newNode = new Node(e);
         tail->next = newNode;
         tail = newNode;
         size++;
-    }
+    }//complexity: O(1)
 
     void add(int index, const E& element) {
         checkPositionIndex(index);
@@ -87,7 +87,7 @@ public:
         newNode->next = prev->next;
         prev->next = newNode;
         size++;
-    }
+    }//complexity: O(n)
 
     E removeFirst() {
         if (isEmpty()) {
@@ -102,7 +102,7 @@ public:
         delete first;
         size--;
         return val;
-    }
+    }//complexity: O(1)
 
     E removeLast() {
         if (isEmpty()) {
@@ -119,7 +119,7 @@ public:
         tail->next = nullptr;
         size--;
         return val;
-    }
+    }//complexity: O(n)
 
     E remove(int index) {
         checkElementIndex(index);
@@ -138,26 +138,26 @@ public:
         delete nodeToRemove;
         size--;
         return val;
-    }
+    }//complexity: O(n)
 
     E getFirst() const {
         if (isEmpty()) {
             throw std::out_of_range("No such element");
         }
         return head->next->val;
-    }
+    }// complexity: O(1)
 
     E getLast() const {
         if (isEmpty()) {
             throw std::out_of_range("No such element");
         }
         return getNode(size - 1)->val;
-    }
+    }// complexity: O(1)
 
     E get(int index) const {
         checkElementIndex(index);
         return getNode(index)->val;
-    }
+    }// complexity: O(n)
 
     E set(int index, const E& element) {
         checkElementIndex(index);
@@ -167,7 +167,7 @@ public:
         p->val = element;
 
         return oldVal;
-    }
+    }// complexity: O(n)
 
     int getSize() const {
         return size;

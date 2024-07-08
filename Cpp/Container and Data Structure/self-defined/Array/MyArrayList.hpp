@@ -54,7 +54,7 @@ public:
             resize(2 * cap);
         }
         data[size++] = e;
-    }
+    }// complexity: O(1) amortized
 
     void add(int index, const E& e) {
         checkPositionIndex(index);
@@ -67,11 +67,11 @@ public:
         }
         data[index] = e;
         size++;
-    }
+    }// complexity: O(n)
 
     void addFirst(const E& e) {
         add(0, e);
-    }
+    }// complexity: O(n)
 
     E removeLast() {
         if (size == 0) {
@@ -86,7 +86,7 @@ public:
         // E() is used to initialize the last element to avoid memory leak, means the destructor of the last element will be called
         //! if don't clear the last element, the destructor will be called for the last element, which may cause memory leak
         return deletedVal;
-    }
+    }// complexity: O(1) amortized
 
     E remove(int index) {
         checkElementIndex(index);
@@ -100,23 +100,23 @@ public:
         }
         data[--size] = E(); // Clear the last element to avoid memory leak
         return deletedVal;
-    }
+    }// complexity: O(n)
 
     E removeFirst() {
         return remove(0);
-    }
+    }// complexity: O(n)
 
     E get(int index) const {
         checkElementIndex(index);
         return data[index];
-    }
+    }// complexity: O(1)
 
     E set(int index, const E& element) {
         checkElementIndex(index);
         E oldVal = data[index];
         data[index] = element;
         return oldVal;
-    }
+    }// complexity: O(1)
 
     int getSize() const {
         return size;
@@ -141,6 +141,7 @@ public:
     }
 };
 
+#if 0
 int main() {
     MyArrayList<int> arr(3);
 
@@ -159,3 +160,4 @@ int main() {
 
     return 0;
 }
+#endif

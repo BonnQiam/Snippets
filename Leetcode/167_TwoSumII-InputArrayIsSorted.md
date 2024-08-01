@@ -9,7 +9,7 @@
 # Solution
 
 只要数组有序，就应该想到双指针技巧。这道题的解法有点类似二分查找 / 
-[[二分查找]] ，通过调节 `left` 和 `right` 就可以调整 `sum` 的大小：
+[[二分搜索]] ，通过调节 `left` 和 `right` 就可以调整 `sum` 的大小：
 
 ```cpp
 class Solution {

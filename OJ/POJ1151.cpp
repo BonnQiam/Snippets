@@ -39,31 +39,31 @@ double X[N];
 void pushdown(int l, int r, int rt)
 {
     // l, r是当前节点的区间
-    // rt是当前节点的编号
-    if (t[rt].cnt) // 当前的边被标记，就把当前的长度加上
+    // rt是当前区间对应的编号
+    if (t[rt].cnt) // 当前的区间被标记，根据 X 数组与 [l,r] 区间计算有效长度
         t[rt].len = X[r + 1] - X[l];
     else if (l == r) // 当为一个点的时候长度为0
         t[rt].len = 0;
-    else // 其他情况把左右两个区间的值加上
+    else // 其他情况，合并左右子树的有效长度
         t[rt].len = t[rt << 1].len + t[rt << 1 | 1].len;
 }
 void update(int L, int R, int l, int r, int rt, int val)
 {
     // L, R是要更新的区间
     // l, r是当前节点的区间
-    // rt是当前节点的编号，val是要加的值
+    // rt是当前区间对应的编号，val是要加的值
     if (L <= l && r <= R)// 
     {
-        t[rt].cnt += val;   // 加上标记的值
-        pushdown(l, r, rt); // 向下更新节点
+        t[rt].cnt += val;   // 更新标记值
+        pushdown(l, r, rt); // 计算当前 [l,r] 区间的有效长度
         return;
     }
     int m = (l + r) >> 1;
     if (L <= m)
-        update(L, R, lson, val);
+        update(L, R, lson, val);// 更新标记值
     if (R > m)
-        update(L, R, rson, val);
-    pushdown(l, r, rt);
+        update(L, R, rson, val);// 更新标记值
+    pushdown(l, r, rt);// 计算当前 [l,r] 区间的有效长度
 }
 int main()
 {
@@ -77,9 +77,9 @@ int main()
         {
             scanf("%lf%lf%lf%lf", &a, &b, &c, &d);
             X[num] = a;
-            e[num++] = Seg(a, c, b, 1); // 矩形下面用1来标记吗
+            e[num++] = Seg(a, c, b, 1); // 矩形下边用1来标记
             X[num] = c;
-            e[num++] = Seg(a, c, d, -1); // 上面用-1来标记
+            e[num++] = Seg(a, c, d, -1); // 上边用-1来标记
         }
         sort(X, X + num); // 用于离散化
         sort(e, e + num); // 把矩形的边的纵坐标从小到大排序
